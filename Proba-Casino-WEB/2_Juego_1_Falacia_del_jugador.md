@@ -1,4 +1,4 @@
-Crea un simulador interactivo de lanzamiento de moneda para demostrar que la falacia del jugador es un mito.
+1Crea un simulador interactivo de lanzamiento de moneda para demostrar que la falacia del jugador es un mito.
 
 Mito a desmentir:
 "Si algo ha pasado muchas veces seguidas, ahora es menos probable que vuelva a pasar."
