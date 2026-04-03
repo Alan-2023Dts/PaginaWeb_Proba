@@ -1,0 +1,223 @@
+.container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.myth-box {
+    background-color: var(--card-bg);
+    border-left: 5px solid var(--gold);
+    padding: 1rem 2rem;
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.game-layout {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.game-main {
+    flex: 2;
+    min-width: 300px;
+}
+
+.game-stats {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Controles de Apuesta */
+.bet-controls {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-option {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--text);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-option.active {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+}
+
+/* Animación de Moneda */
+.coin-container {
+    width: 200px;
+    height: 200px;
+    margin: 3rem auto;
+    perspective: 1000px;
+}
+
+.coin {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: bold;
+    backface-visibility: hidden;
+    border: 10px solid #daa520;
+    box-shadow: inset 0 0 45px rgba(255, 255, 255, 0.3), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.heads {
+    background-color: var(--gold);
+    color: #000;
+}
+
+.tails {
+    background-color: #e0e1dd;
+    color: #1b263b;
+    transform: rotateY(180deg);
+}
+
+/* Animaciones */
+.flip-heads { animation: flipHeads 2s forwards ease-out; }
+.flip-tails { animation: flipTails 2s forwards ease-out; }
+
+@keyframes flipHeads {
+    from { transform: rotateY(0); }
+    to { transform: rotateY(1800deg); } /* 5 vueltas completas */
+}
+
+@keyframes flipTails {
+    from { transform: rotateY(0); }
+    to { transform: rotateY(1980deg); } /* 5.5 vueltas completas */
+}
+
+/* Botones */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-danger {
+    background-color: #e63946;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* Estadísticas */
+.stat-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.prob-bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--bg-color);
+    margin-top: 0.5rem;
+    border-radius: 5px;
+}
+
+#bar-heads, #bar-tails {
+    height: 100%;
+    background-color: var(--gold);
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Burbuja de Info */
+.info-bubble {
+    background-color: var(--primary);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    text-align: center;
+    font-style: italic;
+    color: var(--accent);
+}
+
+/* Historial */
+.history-section {
+    margin-top: 4rem;
+}
+
+.history-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    min-height: 60px;
+    align-items: center;
+}
+
+.history-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: fadeInScale 0.3s forwards;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.h-heads { background-color: var(--gold); color: #000; }
+.h-tails { background-color: #e0e1dd; color: #1b263b; }
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .game-layout { flex-direction: column; }
+    .game-main, .game-stats { width: 100%; }
+}

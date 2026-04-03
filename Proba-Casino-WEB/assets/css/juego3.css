@@ -1,0 +1,130 @@
+.deck-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    height: 200px;
+}
+
+.deck {
+    width: 120px;
+    height: 180px;
+    background: #1b263b;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    cursor: pointer;
+    box-shadow: -5px 5px 0 #0d1b2a, -10px 10px 0 #415a77;
+    transition: 0.3s;
+}
+
+.deck:hover {
+    transform: translateY(-5px);
+}
+
+.drawn-card-container {
+    width: 120px;
+    height: 180px;
+    perspective: 1000px;
+}
+
+.card-front {
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    border: 5px solid var(--gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: cardDraw 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.card-front.hidden { display: none; }
+
+@keyframes cardDraw {
+    0% { transform: translateX(-150px) rotateY(-180deg) scale(0.5); opacity: 0; }
+    100% { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+}
+
+/* Cuadrícula de Selección */
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.btn-card {
+    background: var(--card-bg);
+    border: 1px solid var(--primary);
+    color: white;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    transition: 0.2s;
+}
+
+.btn-card:hover {
+    border-color: var(--gold);
+}
+
+.btn-card.selected {
+    background: var(--gold);
+    color: black;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.multiplier-tag {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background: #e63946;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Frecuencias */
+.frequency-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.freq-item {
+    background: #0d1b2a;
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.freq-num { color: var(--gold); font-weight: bold; }
+
+.gold-border { border: 2px solid var(--gold); }
+
+@media (max-width: 768px) {
+    .selection-grid { grid-template-columns: repeat(5, 1fr); }
+}

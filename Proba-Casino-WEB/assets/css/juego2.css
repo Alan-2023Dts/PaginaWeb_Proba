@@ -1,0 +1,166 @@
+.roulette-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto 2rem;
+}
+
+.pointer {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-size: 2rem;
+    color: var(--gold);
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid #555;
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.1, 0, 0.2, 1);
+    background: conic-gradient(
+        #222 0deg 9.72deg, #d00 9.72deg 19.44deg, #222 19.44deg 29.16deg, #d00 29.16deg 38.88deg,
+        #222 38.88deg 48.6deg, #d00 48.6deg 58.32deg, #222 58.32deg 68.04deg, #d00 68.04deg 77.76deg,
+        #222 77.76deg 87.48deg, #d00 87.48deg 97.2deg, #222 97.2deg 106.92deg, #d00 106.92deg 116.64deg,
+        #222 116.64deg 126.36deg, #d00 126.36deg 136.08deg, #222 136.08deg 145.8deg, #d00 145.8deg 155.52deg,
+        #222 155.52deg 165.24deg, #d00 165.24deg 174.96deg, #0a0 174.96deg 184.68deg, #d00 184.68deg 194.4deg,
+        #222 194.4deg 204.12deg, #d00 204.12deg 213.84deg, #222 213.84deg 223.56deg, #d00 223.56deg 233.28deg,
+        #222 233.28deg 243deg, #d00 243deg 252.72deg, #222 252.72deg 262.44deg, #d00 262.44deg 272.16deg,
+        #222 272.16deg 281.88deg, #d00 281.88deg 291.6deg, #222 291.6deg 301.32deg, #d00 301.32deg 311.04deg,
+        #222 311.04deg 320.76deg, #d00 320.76deg 330.48deg, #222 330.48deg 340.2deg, #d00 340.2deg 349.92deg,
+        #222 349.92deg 360deg
+    );
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.inner-wheel {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background: #444;
+    top: 20%;
+    left: 20%;
+    border-radius: 50%;
+    border: 5px solid #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+
+.inner-wheel::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: silver;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #000;
+}
+
+/* Área de Apuestas */
+.betting-area {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid var(--primary);
+}
+
+.chips-display {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.bet-selector {
+    margin-bottom: 1rem;
+}
+
+.bet-selector select {
+    background: #0d1b2a;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.color-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.btn-bet {
+    flex: 1;
+    padding: 15px 5px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.2s;
+    border: 3px solid transparent;
+}
+
+.btn-bet.red { background-color: #d00; color: white; }
+.btn-bet.black { background-color: #222; color: white; }
+.btn-bet.green { background-color: #0a0; color: white; }
+
+.btn-bet.selected {
+    border-color: var(--gold);
+    transform: scale(1.05);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Historial de Resultados */
+.results-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.res-item {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.res-red { background-color: #d00; }
+.res-black { background-color: #222; }
+.res-green { background-color: #0a0; }
+
+.edu-footer {
+    margin-top: 3rem;
+    background: #1b263b;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.edu-content h3 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.profit { color: #0f0; }
+.loss { color: #f00; }
+
+@media (max-width: 480px) {
+    .roulette-container { width: 250px; height: 250px; }
+}

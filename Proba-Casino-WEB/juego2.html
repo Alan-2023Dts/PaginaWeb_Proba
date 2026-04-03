@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ruleta del Casino - Proba Casino</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/juego2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">PROBA<span>CASINO</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#games">Juegos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="game-header">
+            <h1>La Trampa de la Ruleta</h1>
+            <p class="myth-box">"Si juego suficiente tiempo, tarde o temprano recuperaré lo perdido y ganaré." <br><strong>¿Es esto cierto?</strong></p>
+        </section>
+
+        <div class="game-layout">
+            <!-- Panel Izquierdo: Ruleta -->
+            <div class="game-main">
+                <div class="roulette-container">
+                    <div class="pointer">▼</div>
+                    <div id="wheel" class="wheel">
+                        <!-- Los segmentos se generarán con JS o CSS -->
+                        <div class="inner-wheel"></div>
+                    </div>
+                </div>
+
+                <div class="betting-area">
+                    <div class="chips-display">
+                        <span>Tus Fichas: <strong id="balance">100</strong> 🪙</span>
+                    </div>
+                    
+                    <div class="bet-selector">
+                        <label>Cantidad a apostar:</label>
+                        <select id="bet-amount">
+                            <option value="10">10 fichas</option>
+                            <option value="20">20 fichas</option>
+                            <option value="30">30 fichas</option>
+                            <option value="40">40 fichas</option>
+                            <option value="50">50 fichas</option>
+                            <option value="100">100 fichas</option>
+                        </select>
+                    </div>
+
+                    <div class="color-options">
+                        <button id="bet-red" class="btn-bet red">Rojo</button>
+                        <button id="bet-black" class="btn-bet black">Negro</button>
+                        <button id="bet-green" class="btn-bet green">Verde (0)</button>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="spin-btn" class="btn-primary" disabled>¡Girar Ruleta!</button>
+                        <button id="retire-btn" class="btn-danger">Retirarse</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Derecho: Estadísticas y Educación -->
+            <div class="game-stats">
+                <div class="stat-card">
+                    <h3>Estado de la Sesión</h3>
+                    <p>Inicial: <strong>100</strong></p>
+                    <p>Actual: <strong id="current-total">100</strong></p>
+                    <p>Ganancia/Pérdida: <strong id="profit-loss">0</strong></p>
+                </div>
+
+                <div id="msg-box" class="info-bubble">
+                    Selecciona un color y una cantidad para apostar. El "0" verde es la ventaja del casino.
+                </div>
+
+                <div class="history-card">
+                    <h3>Últimos Resultados</h3>
+                    <div id="results-history" class="results-grid">
+                        <!-- Historial de colores -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Educación -->
+        <section class="edu-footer">
+            <div class="edu-content">
+                <h3>¿Por qué la casa siempre gana?</h3>
+                <p>En una ruleta europea hay 37 números (1-36 y el 0). Aunque apuestes a Rojo/Negro, tu probabilidad no es 50%, sino 48.6%. Ese pequeño 2.7% de diferencia (el cero verde) es lo que asegura que, a largo plazo, el casino siempre se quede con tu dinero.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/juego2.js"></script>
+</body>
+</html>
