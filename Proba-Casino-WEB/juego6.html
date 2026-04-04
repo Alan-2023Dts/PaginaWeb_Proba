@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot Box Simulator - Proba Casino</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/juego6.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">PROBA<span>CASINO</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#games">Juegos</a></li>
+                <li><a href="#conceptos-section">Conceptos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="inicio" class="game-header">
+            <h1>📦 Loot Box Simulator</h1>
+            <div class="myth-reality-box">
+                <div class="myth-box">
+                    <span class="label-myth">❌ El mito:</span>
+                    <p>"Si compro muchas cajas, seguro me sale el legendario."</p>
+                </div>
+                <div class="reality-box">
+                    <span class="label-reality">✅ La realidad:</span>
+                    <p>Cada carta tiene su propia probabilidad. Comprar más cartas aumenta la posibilidad acumulada, pero nunca garantiza una legendaria.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulacion" class="simulation-section">
+            <div class="game-layout">
+                <div class="game-main">
+                    <div class="lootbox-stage">
+                        <div class="lootbox-panel">
+                            <div class="lootbox-badge">Legendario: 1% por carta</div>
+                            <div id="loot-box" class="loot-box" aria-label="Caja de botín animada">
+                                <div class="loot-box-glow"></div>
+                                <div class="loot-box-lid"></div>
+                                <div class="loot-box-body">
+                                    <span class="loot-box-seal">OPEN</span>
+                                </div>
+                            </div>
+                            <p id="lootbox-message" class="lootbox-message">Compra un mazo para abrir cartas y ver la distribución de rarezas.</p>
+                        </div>
+
+                        <div class="purchase-panel">
+                            <h3>Comprar mazos</h3>
+                            <div class="purchase-buttons">
+                                <button id="buy-deck-1" class="btn-purchase btn-purchase-1">
+                                    <span class="btn-icon">🃏</span>
+                                    <span class="btn-text">1 mazo</span>
+                                    <span class="btn-detail">10 cartas · 10 fichas</span>
+                                </button>
+                                <button id="buy-deck-10" class="btn-purchase btn-purchase-10">
+                                    <span class="btn-icon">📦</span>
+                                    <span class="btn-text">10 mazos</span>
+                                    <span class="btn-detail">100 cartas · 90 fichas</span>
+                                    <span class="btn-badge">-10 fichas</span>
+                                </button>
+                            </div>
+                            <button id="reset-game" class="btn-reset">🔄 Reiniciar simulación</button>
+                        </div>
+                    </div>
+
+                    <div class="cards-section">
+                        <h3>Cartas reveladas</h3>
+                        <div id="cards-grid" class="cards-grid">
+                            <p class="empty-message">Aún no has abierto ningún mazo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="game-stats">
+                    <div class="stat-card stat-fichas">
+                        <h3>💰 Fichas</h3>
+                        <div id="chips-amount" class="stat-value-large">1000</div>
+                        <p class="stat-subtitle">Saldo inicial: 1000 fichas</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>🎁 Mazos comprados</h3>
+                        <div id="decks-bought" class="stat-value">0</div>
+                        <p class="stat-subtitle">1 mazo o 10 mazos por compra</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>🃏 Cartas reveladas</h3>
+                        <div id="cards-opened" class="stat-value">0</div>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p id="progress-label" class="stat-subtitle">0/0 cartas reveladas</p>
+                        <p class="stat-subtitle">Capacidad comprada: <strong id="cards-capacity">0</strong></p>
+                    </div>
+
+                    <div class="stat-card stat-rarezas">
+                        <h3>📊 Rarezas</h3>
+                        <div class="rareza-item rareza-comun">
+                            <span class="rareza-label">Común</span>
+                            <span id="rarity-common" class="rareza-count">0</span>
+                        </div>
+                        <div class="rareza-item rareza-raro">
+                            <span class="rareza-label">Raro</span>
+                            <span id="rarity-rare" class="rareza-count">0</span>
+                        </div>
+                        <div class="rareza-item rareza-epico">
+                            <span class="rareza-label">Épico</span>
+                            <span id="rarity-epic" class="rareza-count">0</span>
+                        </div>
+                        <div class="rareza-item rareza-legendario">
+                            <span class="rareza-label">Legendario</span>
+                            <span id="rarity-legendary" class="rareza-count">0</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-probabilidad">
+                        <h3>🎯 Probabilidad acumulada</h3>
+                        <div id="accumulated-probability" class="prob-value">0.00%</div>
+                        <p id="legendary-odds" class="prob-subtitle">Aún no hay cartas abiertas</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="resultados" class="results-section">
+            <h2 class="section-title">📈 Resultados de la simulación</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Fichas restantes</h3>
+                    <p id="result-chips">1000</p>
+                </div>
+                <div class="result-card">
+                    <h3>Cartas obtenidas</h3>
+                    <p id="result-cards">0</p>
+                </div>
+                <div class="result-card">
+                    <h3>Legendarios encontrados</h3>
+                    <p id="result-legendary">0</p>
+                </div>
+                <div class="result-card">
+                    <h3>Probabilidad acumulada</h3>
+                    <p id="result-probability">0.00%</p>
+                </div>
+            </div>
+            <div class="result-note">
+                <p>Comprar más cartas aumenta la probabilidad acumulada de ver al menos un legendario, pero el resultado nunca queda garantizado.</p>
+            </div>
+        </section>
+
+        <section id="conceptos-section" class="edu-footer">
+            <h2>🎓 Conceptos clave</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h3>🎲 Evento independiente</h3>
+                    <p>La probabilidad de cada carta se recalcula en cada apertura. Una carta legendaria anterior no cambia las siguientes.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>📊 Probabilidad acumulada</h3>
+                    <p>Mientras más cartas abras, más probable es encontrar al menos una legendaria. Aun así, la certeza nunca llega al 100%.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>💎 Rarezas y colores</h3>
+                    <p>Los colores ayudan a visualizar la expectativa: gris para común, verde para raro, azul para épico y dorado para legendario.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>⚠️ Lección principal</h3>
+                    <p>El descuento por comprar más mazos reduce el costo por carta, pero no cambia la probabilidad de obtener la carta más valiosa.</p>
+                </div>
+            </div>
+
+            <div class="math-box">
+                <h3>🔢 Matemáticas detrás del simulador</h3>
+                <div class="math-grid">
+                    <p><strong>Probabilidad de legendario por carta:</strong> 1%</p>
+                    <p><strong>Probabilidad de no obtener legendario en una carta:</strong> 99%</p>
+                    <p><strong>Probabilidad acumulada:</strong> 1 - (0.99)^n</p>
+                    <p><strong>Interpretación:</strong> más cartas abres, más se acerca a 100%, pero nunca lo alcanza.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="legendary-modal" class="modal hidden" role="dialog" aria-labelledby="legendary-title" aria-hidden="true">
+        <div class="legendary-content">
+            <div class="legendary-sparkles"></div>
+            <h2 id="legendary-title">✨ Legendario conseguido</h2>
+            <div id="legendary-summary" class="legendary-stats"></div>
+            <button id="legendary-close" class="btn-primary">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="particles-container" class="particles-container"></div>
+
+    <script src="assets/js/juego6.js"></script>
+</body>
+</html>
