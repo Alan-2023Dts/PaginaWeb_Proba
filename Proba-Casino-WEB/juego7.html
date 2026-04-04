@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Qué número saldrá? - Proba Casino</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/juego7.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">PROBA<span>CASINO</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#games">Juegos</a></li>
+                <li><a href="#conceptos-section">Conceptos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="inicio" class="game-header">
+            <h1>🎯 ¿Qué número saldrá?</h1>
+            <div class="myth-reality-box">
+                <div class="myth-box">
+                    <span class="label-myth">❌ El mito</span>
+                    <p>"Si un número no sale hace rato, ya le toca en el siguiente tiro."</p>
+                </div>
+                <div class="reality-box">
+                    <span class="label-reality">✅ La realidad</span>
+                    <p>La ruleta no tiene memoria. Cada tiro es independiente y los patrones que creemos ver aparecen por azar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulacion" class="simulation-section">
+            <div class="game-layout">
+                <div class="game-main">
+                    <section class="roulette-panel">
+                        <div class="roulette-stage">
+                            <div class="roulette-pointer">▼</div>
+                            <div id="roulette-wheel" class="roulette-wheel" aria-label="Ruleta de números del 1 al 10">
+                                <div class="roulette-center">?</div>
+                                <div class="wheel-number" style="--angle: 0deg;">1</div>
+                                <div class="wheel-number" style="--angle: 36deg;">2</div>
+                                <div class="wheel-number" style="--angle: 72deg;">3</div>
+                                <div class="wheel-number" style="--angle: 108deg;">4</div>
+                                <div class="wheel-number" style="--angle: 144deg;">5</div>
+                                <div class="wheel-number" style="--angle: 180deg;">6</div>
+                                <div class="wheel-number" style="--angle: 216deg;">7</div>
+                                <div class="wheel-number" style="--angle: 252deg;">8</div>
+                                <div class="wheel-number" style="--angle: 288deg;">9</div>
+                                <div class="wheel-number" style="--angle: 324deg;">10</div>
+                            </div>
+                        </div>
+
+                        <div id="result-banner" class="result-banner">
+                            Elige un número y comprueba que cada tiro es independiente.
+                        </div>
+                    </section>
+
+                    <section class="prediction-panel">
+                        <h3>Tu predicción</h3>
+                        <p class="prediction-hint">Selecciona el número que crees que saldrá en el siguiente tiro.</p>
+                        <div id="number-selector" class="number-selector">
+                            <button class="number-btn" data-number="1">1</button>
+                            <button class="number-btn" data-number="2">2</button>
+                            <button class="number-btn" data-number="3">3</button>
+                            <button class="number-btn" data-number="4">4</button>
+                            <button class="number-btn" data-number="5">5</button>
+                            <button class="number-btn" data-number="6">6</button>
+                            <button class="number-btn" data-number="7">7</button>
+                            <button class="number-btn" data-number="8">8</button>
+                            <button class="number-btn" data-number="9">9</button>
+                            <button class="number-btn" data-number="10">10</button>
+                        </div>
+                        <div class="prediction-summary">
+                            <span>Predicción seleccionada:</span>
+                            <strong id="selected-number">-</strong>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="btn-spin" class="btn-primary" disabled>🎰 Girar</button>
+                            <button id="btn-reset" class="btn-danger">🔄 Reiniciar</button>
+                        </div>
+                    </section>
+
+                    <section class="history-section">
+                        <div class="section-heading">
+                            <h3>Historial de tiros</h3>
+                            <p>Los últimos números obtenidos aparecen aquí, junto con tu acierto o fallo.</p>
+                        </div>
+                        <div id="history-list" class="history-list">
+                            <span class="history-placeholder">Todavía no has girado la ruleta.</span>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="game-stats">
+                    <div class="stat-card stat-fichas">
+                        <h3>💰 Fichas</h3>
+                        <div id="chips-amount" class="stat-value-large">1000</div>
+                        <p class="stat-subtitle">Cada tiro cuesta 10 fichas</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>🎲 Tiros realizados</h3>
+                        <div id="spin-count" class="stat-value">0</div>
+                        <p class="stat-subtitle">Intentos totales</p>
+                    </div>
+
+                    <div class="stat-card stat-success">
+                        <h3>✅ Aciertos</h3>
+                        <div id="hit-count" class="stat-value">0</div>
+                        <p class="stat-subtitle">Tiros correctos</p>
+                    </div>
+
+                    <div class="stat-card stat-error">
+                        <h3>❌ Fallos</h3>
+                        <div id="miss-count" class="stat-value">0</div>
+                        <p class="stat-subtitle">Tiros incorrectos</p>
+                    </div>
+
+                    <div class="stat-card stat-rate">
+                        <h3>📈 Frecuencia relativa</h3>
+                        <div id="hit-rate" class="prob-value">0%</div>
+                        <p class="stat-subtitle">Aciertos / tiros realizados</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="resultados" class="results-section">
+            <h2 class="section-title">📊 Resultados</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Número más reciente</h3>
+                    <p id="latest-result">-</p>
+                </div>
+                <div class="result-card">
+                    <h3>Historial visible</h3>
+                    <p id="history-count">0</p>
+                </div>
+                <div class="result-card">
+                    <h3>Total de aciertos</h3>
+                    <p id="summary-hits">0</p>
+                </div>
+                <div class="result-card">
+                    <h3>Total de fallos</h3>
+                    <p id="summary-misses">0</p>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Distribución de números</h3>
+                    <p>Frecuencia relativa de cada número tras los tiros realizados.</p>
+                    <canvas id="frequency-chart" aria-label="Gráfico de frecuencia relativa" role="img"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Frecuencia por número</h3>
+                    <div id="frequency-table" class="frequency-table"></div>
+                </div>
+            </div>
+
+            <div class="result-note">
+                <p>La distribución no necesita formar patrones para ser aleatoria. En series cortas, algunas cifras se repiten más que otras por puro azar.</p>
+            </div>
+        </section>
+
+        <section id="conceptos-section" class="edu-footer">
+            <h2>🎓 Conceptos clave</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h3>🎲 Aleatoriedad</h3>
+                    <p>Cada tiro de la ruleta es independiente. El número anterior no afecta al siguiente resultado.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>📊 Frecuencia relativa</h3>
+                    <p>Con muchos tiros, cada número tiende a aparecer cerca del 10%. En pocas rondas, la distribución puede verse irregular.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>🔍 Patrones ilusorios</h3>
+                    <p>Nuestro cerebro busca secuencias y tendencias, aunque en la aleatoriedad real no haya patrón alguno.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>⚠️ Lección educativa</h3>
+                    <p>Creer que un número "ya toca" es una forma de falacia: la probabilidad no se acumula de esa manera en un tiro aislado.</p>
+                </div>
+            </div>
+
+            <div class="math-box">
+                <h3>🔢 Interpretación matemática</h3>
+                <div class="math-grid">
+                    <p><strong>Probabilidad de un número:</strong> 1 de 10 = 10%</p>
+                    <p><strong>Costo por tiro:</strong> 10 fichas</p>
+                    <p><strong>Acierto:</strong> devuelve 10 fichas</p>
+                    <p><strong>Error:</strong> resta 10 fichas</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/juego7.js"></script>
+</body>
+</html>
