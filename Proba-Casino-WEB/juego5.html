@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿La suerte mejora con más intentos? - Proba Casino</title>
+    <!-- CSS en assets/css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/juego5.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">PROBA<span>CASINO</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#games">Juegos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="game-header">
+            <h1>¿La suerte mejora con más intentos?</h1>
+            <p class="myth-box">"Si sigo intentando, eventualmente ME TIENE QUE TOCAR el premio" <br><strong>¿Realidad o Mito?</strong></p>
+        </section>
+
+        <div class="game-layout">
+            <!-- Panel Izquierdo: Tómbola -->
+            <div class="game-main">
+                <div class="tombola-container">
+                    <!-- Indicador de Probabilidad Fija -->
+                    <div class="probability-badge">
+                        <span class="prob-icon">🎲</span>
+                        <span class="prob-text">5% de probabilidad<br>por intento</span>
+                    </div>
+
+                    <!-- Tómbola 3D -->
+                    <div id="tombola" class="tombola">
+                        <div class="tombola-inner">
+                            <div class="tombola-front"></div>
+                            <div class="tombola-back"></div>
+                            <div class="tombola-left"></div>
+                            <div class="tombola-right"></div>
+                        </div>
+                        <!-- Bola dentro de la tómbola -->
+                        <div id="ball" class="ball"></div>
+                    </div>
+
+                    <!-- Mensaje de resultado -->
+                    <div id="result-message" class="result-message"></div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="action-buttons">
+                    <button id="btn-girar" class="btn-tombola" aria-label="Girar la tómbola una vez">🎰 Girar Tómbola</button>
+                    <button id="btn-girar-10" class="btn-multiple" aria-label="Girar la tómbola diez veces rápidamente">⚡ Girar 10 veces</button>
+                    <button id="btn-reset" class="btn-danger" aria-label="Reiniciar el juego">🔄 Reiniciar</button>
+                </div>
+
+                <!-- Burbuja informativa -->
+                <div id="educational-msg" class="info-bubble">
+                    Cada intento cuesta 10 fichas. La probabilidad de ganar siempre es 5%, sin importar cuántas veces intentes.
+                </div>
+            </div>
+
+            <!-- Panel Derecho: Estadísticas -->
+            <div class="game-stats">
+                <!-- Fichas restantes (destacado) -->
+                <div class="stat-card stat-fichas">
+                    <h3>💰 Fichas</h3>
+                    <div id="stat-fichas" class="stat-value-large">1000</div>
+                    <p class="stat-subtitle">10 fichas por intento</p>
+                </div>
+
+                <!-- Intentos realizados -->
+                <div class="stat-card">
+                    <h3>🎲 Intentos</h3>
+                    <div id="stat-intentos" class="stat-value">0</div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <p class="stat-subtitle">de 100 posibles</p>
+                </div>
+
+                <!-- Premios ganados -->
+                <div class="stat-card stat-premios">
+                    <h3>🏆 Premios Ganados</h3>
+                    <div id="stat-premios" class="stat-value">0</div>
+                    <p class="stat-subtitle">+100 fichas por premio</p>
+                </div>
+
+                <!-- Ganancia/Pérdida neta -->
+                <div class="stat-card stat-balance">
+                    <h3>📊 Balance</h3>
+                    <div id="stat-balance" class="stat-value">0</div>
+                    <p class="stat-subtitle">Ganancia/Pérdida neta</p>
+                </div>
+
+                <!-- Frecuencia esperada vs real -->
+                <div class="stat-card stat-frecuencia">
+                    <h3>📈 Frecuencia Esperada</h3>
+                    <div class="frecuencia-info">
+                        <div class="freq-row">
+                            <span>Esperada (5%):</span>
+                            <span id="freq-esperada" class="freq-value">0</span>
+                        </div>
+                        <div class="freq-row">
+                            <span>Real:</span>
+                            <span id="freq-real" class="freq-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Educativa -->
+        <section class="edu-footer">
+            <h2>🎓 Conceptos Clave</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h3>🎯 Probabilidad Repetida</h3>
+                    <p>Cada intento tiene <strong>exactamente 5% de probabilidad</strong> de ganar, sin importar cuántas veces hayas jugado antes. Los resultados anteriores NO afectan los futuros.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>📊 Frecuencia Esperada</h3>
+                    <p>Si juegas 100 veces, <strong>se espera</strong> ganar aproximadamente 5 veces (5%). Pero esto es un <strong>promedio estadístico</strong>, NO una garantía. Podrías ganar 0, 3, 8 o cualquier número.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>❌ El Mito Desmitificado</h3>
+                    <p><strong>Más intentos NO garantizan ganar el premio.</strong> Aunque a largo plazo la frecuencia se acerca al 5%, cada intento individual sigue siendo independiente. Gastar 1000 fichas NO asegura obtener el premio.</p>
+                </div>
+                <div class="edu-card">
+                    <h3>💡 Independencia de Eventos</h3>
+                    <p>Cada giro de la tómbola es un <strong>evento independiente</strong>. El resultado de un intento no "compensa" ni "predice" el siguiente. La probabilidad siempre se reinicia a 5%.</p>
+                </div>
+            </div>
+
+            <!-- Explicación Matemática -->
+            <div class="math-explanation">
+                <h3>🔢 Matemáticas detrás del juego</h3>
+                <div class="math-content">
+                    <p><strong>Probabilidad por intento:</strong> P(ganar) = 5% = 0.05 = 1/20</p>
+                    <p><strong>Probabilidad de NO ganar:</strong> P(perder) = 95% = 0.95 = 19/20</p>
+                    <p><strong>Costo:</strong> 10 fichas por intento</p>
+                    <p><strong>Premio:</strong> 100 fichas</p>
+                    <p><strong>Valor esperado por intento:</strong> (0.05 × 100) - (0.95 × 10) = 5 - 9.5 = <span class="negative">-4.5 fichas</span></p>
+                    <p class="conclusion">En promedio, <strong>pierdes 4.5 fichas por intento</strong>. La casa siempre tiene ventaja matemática.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Fin de Juego -->
+    <div id="game-over-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <h2 id="modal-title">🎮 Fin del Juego</h2>
+            <div id="modal-stats" class="modal-stats">
+                <!-- Estadísticas finales se llenan con JS -->
+            </div>
+            <div class="modal-message">
+                <p id="modal-message-text"></p>
+            </div>
+            <button id="modal-close" class="btn-primary" aria-label="Cerrar modal y reiniciar el juego">Cerrar y Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Efecto de confetti para premio ganado -->
+    <div id="confetti-container" class="confetti-container"></div>
+
+    <!-- JS en assets/js -->
+    <script src="assets/js/juego5.js"></script>
+</body>
+</html>
